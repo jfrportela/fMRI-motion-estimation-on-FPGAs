@@ -11,8 +11,8 @@ import numpy as np
 import nibabel as nib
 import timeit
 
-# Setting file and name
-PATH="C:\\Users\\Javier\\Desktop\\BMB_1\\sub-0003001\\ses-1\\func"
+# Setting file path and name (current directory by default)
+PATH=""
 file = os.path.join(PATH, 'sub-0003001_ses-1_task-rest_run-1_bold.nii')
 
 # Loading Nifti image from nii file using nibabel library
@@ -131,5 +131,3 @@ timeit.timeit('ssd_slow(img1_flat, img2_flat)', number=1990, globals=globals())
 # Output: 517.01s
 timeit.timeit('get_ssd_slow(data)', number=10, globals=globals())
 # Output: 546.52s (average of 54.65s per run, 4 times slower than get_ssd_list)
-
-
