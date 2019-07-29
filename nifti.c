@@ -22,7 +22,7 @@ struct Nifti read_img(char* filename){
     clock_t duration = clock();
 
     long size;
-	size_t read;
+    size_t read;
     short *buffer;
 
     FILE *file = fopen(filename, "rb");
@@ -42,7 +42,7 @@ struct Nifti read_img(char* filename){
     }
 
     fseek(file, NIFTI_HEADER_SIZE, SEEK_SET);   
-	read = fread(buffer, BYTES_PER_READ, size / BYTES_PER_READ, file);
+    read = fread(buffer, BYTES_PER_READ, size / BYTES_PER_READ, file);
     printf("I read %zu elements of size %d bytes (total bytes read: %zu)\n",
         read, BYTES_PER_READ, read * BYTES_PER_READ);
 
@@ -63,20 +63,20 @@ long long *get_ssd_array( short* buffer, int num_of_images, int img_size ){
 
     clock_t duration = clock();
 	
-	long long *ssd_array;
+    long long *ssd_array;
     if(!(ssd_array = malloc(sizeof(long long)*(num_of_images - 1)))) {
         fprintf(stderr, "Failed to allocate ssd_array memory\n");
         exit( 1 );
     }
 	
-	long long ssd;
-	short diff = 0;
+    long long ssd;
+    short diff = 0;
 
     for( int j = 1; j < num_of_images; j = j + 1 ){
         ssd = 0;
-	    for( int  i = 0; i < img_size; i = i + 1 ){
-          diff = buffer[i] - buffer[i + j*img_size];
-          ssd += (long long)(diff*diff);
+	for( int  i = 0; i < img_size; i = i + 1 ){
+            diff = buffer[i] - buffer[i + j*img_size];
+            ssd += (long long)(diff*diff);
         }
         ssd_array[j-1] = ssd;
     }
@@ -92,8 +92,7 @@ long long *get_ssd_array( short* buffer, int num_of_images, int img_size ){
 
 
 int main(int argc, char *argv[])
-{   
-   
+{    
 	char *nii_file;
 	/*** set file path accordingly*/
 	nii_file = "C:\\Users\\Javier\\Desktop\\BMB_1\\sub-0003001\\ses-1\\func\\sub-0003001_ses-1_task-rest_run-1_bold.nii";
