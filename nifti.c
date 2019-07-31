@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
 {    
 	char *nii_file;
 	/*** set file path accordingly*/
-	nii_file = "C:\\Users\\Javier\\Desktop\\BMB_1\\sub-0003001\\ses-1\\func\\sub-0003001_ses-1_task-rest_run-1_bold.nii";
+	nii_file = "C:\\Users\\...\\BMB_1\\sub-0003001\\ses-1\\func\\sub-0003001_ses-1_task-rest_run-1_bold.nii";
 
 	struct Nifti img = read_img(nii_file);
 
