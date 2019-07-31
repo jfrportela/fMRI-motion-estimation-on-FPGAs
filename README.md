@@ -1,4 +1,4 @@
-# fMRI-motion-estimation-on-FPGAs
+# fMRI motion estimation on FPGAs
 
 One of the most common preprocessing steps applied to fMRI images for their analysis is motion estimation. Correcting it ensures that each voxel of tue subsequent 3D images maps to the same point on the brain. A transformation matrix is calculated between a target image and the rest, such as in [niak](https://github.com/SIMEXP/niak/blob/master/bricks/fmri_preprocess/niak_brick_motion_parameters.m), which uses minctracc function for it. This function uses, among other things, a distance measure among the images, that is minimized on an optimization problem. One common distance measure between 2 images is the sum of squared differences (ssd). 
 
@@ -20,7 +20,7 @@ There are 2 functions, `ssd(img1, img2)` to get the sum of squared differences b
 
 These functions (and its old slower version) are timed over 10 runs for performance comparison among them and the equivalent C code. The `get_ssd_list` function takes an average of 14.31 seconds per run on a single intel CORE i7.
 
-# nifti.c
+## nifti.c
 
 This code performs the same operations as the python one but without using a library for reading the Nifti file, so a function `read_img` is defined for this task. It uses the information obtained from the header of the nii file on the python script, such as the data type of the voxels, the size of the header or the 4 dimensions of the image. The size of the offset (or extensions) was calculated by substracting from the total size of the file (55711328 bytes), the size of the header (352 bytes) and the size of the actual image data (139264 voxels per image * 200 3D images * 2 bytes per voxel = 55705600 bytes).
 
